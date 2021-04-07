@@ -1,0 +1,54 @@
+package ru.geekbrains.march.chat.server;
+
+//import java.util.ArrayList;
+//import java.util.Arrays;
+//import java.util.List;
+
+public class InMemoryAuthenticationProvider implements AuthenticationProvider {
+    Sqlite sql;
+
+//    private class User {
+//        private String login;
+//        private String password;
+//        private String nickname;
+//
+//        public User(String login, String password, String nickname) {
+//            this.login = login;
+//            this.password = password;
+//            this.nickname = nickname;
+//        }
+//    }
+
+//    private List<User> users;
+
+    public InMemoryAuthenticationProvider() {
+        sql = new Sqlite();
+//        this.users = new ArrayList<>(Arrays.asList(
+//                new User("Bob", "100", "MegaBob"),
+//                new User("Jack", "100", "Mystic"),
+//                new User("John", "100", "Wizard")
+//        ));
+    }
+
+    @Override
+    public String getNicknameByLoginAndPassword(String login, String password) {
+        return this.sql.AuthFind( login, password);
+//        for (User u : users) {
+//            if (u.login.equals(login) && u.password.equals(password)) {
+//                return u.nickname;
+//            }
+//        }
+//        return null;
+    }
+
+    @Override
+    public void changeNickname(String oldNickname, String newNickname) {
+        this.sql.RenameUser(oldNickname, newNickname);
+//        for (User u : users) {
+//            if (u.nickname.equals(oldNickname)) {
+//                u.nickname = newNickname;
+//                return;
+//            }
+//        }
+    }
+}
